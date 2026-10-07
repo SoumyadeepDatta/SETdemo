@@ -1,0 +1,11 @@
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: state_store
+    ports:
+      - "5432:5432"
+    # Phase 2 runs up to 200 concurrent agents, so allow plenty of connections.
+    command: ["postgres", "-c", "max_connections=300"]
